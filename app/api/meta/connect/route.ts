@@ -5,23 +5,35 @@ import crypto from "crypto";
 export async function GET(request: Request) {
   const appId = process.env.META_APP_ID;
   const version = process.env.META_GRAPH_VERSION;
-  if (!appId || !version) return NextResponse.json({ error: "META_APP_ID is not configured." }, { status: 500 });
 
-  const redirectUri = process.env.META_REDIRECT_URI || new URL("/api/meta/callback", request.url).toString();
+  if (!appId || !version) {
+    return NextResponse.json(
+      { error: "META_APP_ID is not configured." },
+      { status: 500 }
+    );
+  }
+
+  const redirectUri =
+    process.env.META_REDIRECT_URI ||
+    new URL("/api/meta/callback", request.url).toString();
+
   const state = crypto.randomBytes(24).toString("hex");
   const store = await cookies();
-  store.set("reelpilot_meta_state", state, { httpOnly: true, secure: true, sameSite: "lax", path: "/", maxAge: 600 });
 
-  // Page publishing permissions are provided by Meta's
-  // "Manage everything on your Page" use case.
-  // Do not request the legacy publish_video/pages_manage_metadata scopes.
-  const scope = [
-    "pages_show_list",
-    "pages_read_engagement",
-    "pages_manage_posts"
-  ].join(",");
+  store.set("reelpilot_meta_state", state, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "lax",
+    path: "/",
+    maxAge: 600,
+  });
 
-  const url = new URL(`https://www.facebook.com/${version}/dialog/oauth`);
+  const scope = "public_profile";
+
+  const url = new URL(
+    `https://www.facebook.com/${version}/dialog/oauth`
+  );
+
   url.searchParams.set("client_id", appId);
   url.searchParams.set("redirect_uri", redirectUri);
   url.searchParams.set("state", state);
