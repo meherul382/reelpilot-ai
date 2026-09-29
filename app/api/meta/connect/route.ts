@@ -12,12 +12,13 @@ export async function GET(request: Request) {
   const store = await cookies();
   store.set("reelpilot_meta_state", state, { httpOnly: true, secure: true, sameSite: "lax", path: "/", maxAge: 600 });
 
+  // Page publishing permissions are provided by Meta's
+  // "Manage everything on your Page" use case.
+  // Do not request the legacy publish_video/pages_manage_metadata scopes.
   const scope = [
     "pages_show_list",
     "pages_read_engagement",
-    "pages_manage_posts",
-    "pages_manage_metadata",
-    "publish_video"
+    "pages_manage_posts"
   ].join(",");
 
   const url = new URL(`https://www.facebook.com/${version}/dialog/oauth`);
