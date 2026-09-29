@@ -25,6 +25,7 @@ export async function GET(request: Request) {
   const appId = process.env.META_APP_ID!;
   const appSecret = process.env.META_APP_SECRET!;
   const version = process.env.META_GRAPH_VERSION;
+  if (!appId || !appSecret || !version) return NextResponse.redirect(new URL("/?facebook=config_error", request.url));
   const redirectUri = process.env.META_REDIRECT_URI || new URL("/api/meta/callback", request.url).toString();
 
   const tokenUrl = new URL(`https://graph.facebook.com/${version}/oauth/access_token`);
