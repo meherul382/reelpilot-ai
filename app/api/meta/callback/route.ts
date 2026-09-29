@@ -40,6 +40,15 @@ export async function GET(request: Request) {
   }
 
   const accessToken = tokenData.access_token as string;
+  const meUrl = new URL(`https://graph.facebook.com/${version}/me`);
+  meUrl.searchParams.set("fields", "id");
+  meUrl.searchParams.set("access_token", accessToken);
+  const meResponse = await fetch(meUrl);
+  const meData = await meResponse.json();
+  if (!meResponse.ok || !meData.id) {
+    return NextResponse.redirect(new URL("/?facebook=identity_error", request.url));
+  }
+
   const pagesUrl = new URL(`https://graph.facebook.com/${version}/me/accounts`);
   pagesUrl.searchParams.set("fields", "id,name,access_token");
   pagesUrl.searchParams.set("access_token", accessToken);
@@ -59,7 +68,7 @@ export async function GET(request: Request) {
   await admin.from("profiles").upsert({ id: user.id });
   const { data: connection, error: connectionError } = await admin
     .from("facebook_connections")
-    .upsert({ user_id: user.id, meta_user_id: user.id }, { onConflict: "id" })
+    .insert({ user_id: user.id, meta_user_id: meData.id, token_expires_at: tokenData.expires_in ? new Date(Date.now() + Number(tokenData.expires_in) * 1000).toISOString() : null })
     .select("id")
     .single();
 
