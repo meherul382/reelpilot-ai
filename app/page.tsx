@@ -141,7 +141,14 @@ export default function Home() {
         ))}
       </section>
 
-      <footer>ReelPilot AI • Facebook publishing + tracked link workflow</footer>
+      <footer>
+        <div>ReelPilot AI • Facebook publishing + tracked link workflow</div>
+        <nav className="footerLinks" aria-label="Legal">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+          <a href="/data-deletion">Data Deletion</a>
+        </nav>
+      </footer>
     </main>
   );
 }
