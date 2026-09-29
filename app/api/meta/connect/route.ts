@@ -4,7 +4,7 @@ import crypto from "crypto";
 
 export async function GET(request: Request) {
   const appId = process.env.META_APP_ID;
-  const version = process.env.META_GRAPH_VERSION || "v24.0";
+  const version = process.env.META_GRAPH_VERSION;
   if (!appId) return NextResponse.json({ error: "META_APP_ID is not configured." }, { status: 500 });
 
   const redirectUri = process.env.META_REDIRECT_URI || new URL("/api/meta/callback", request.url).toString();
