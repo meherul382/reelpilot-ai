@@ -47,7 +47,8 @@ export default function Home() {
     ensureSession().then(loadPages).catch(e => setMessage(e.message));
     const params = new URLSearchParams(window.location.search);
     if (params.get("facebook") === "connected") setMessage("Facebook connected successfully. Your Pages are ready.");
-    if (params.get("facebook") && params.get("facebook") !== "connected") setMessage("Facebook connection needs attention: " + params.get("facebook"));
+    if (params.get("facebook") === "connected_no_pages") setMessage("Facebook connected, but no Facebook Pages are available for this app yet.");
+    if (params.get("facebook") && !["connected", "connected_no_pages"].includes(params.get("facebook")!)) setMessage("Facebook connection needs attention: " + params.get("facebook"));
   }, []);
 
   function generateCaption() {
