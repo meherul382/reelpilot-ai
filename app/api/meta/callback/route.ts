@@ -102,5 +102,7 @@ export async function GET(request: Request) {
     }
   }
 
-  return NextResponse.redirect(new URL("/?facebook=connected", request.url));
+  const pageCount = Array.isArray(pagesData.data) ? pagesData.data.length : 0;
+  const status = pageCount > 0 ? "connected" : "connected_no_pages";
+  return NextResponse.redirect(new URL(`/?facebook=${status}`, request.url));
 }
