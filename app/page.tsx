@@ -71,6 +71,7 @@ export default function Home() {
 
       <div className="container">
         <AdSlot label="Top Banner" />
+        <div className="exploreAdWrap"><a className="exploreAd" href="https://movementssubscriptionobjection.com/n6ca0j1g?key=e26f23836be2dec0064859be24df5df4" target="_blank" rel="sponsored nofollow noopener noreferrer"><span>Sponsored</span><strong>Explore More ↗</strong></a></div>
 
         <section className="hero">
           <div className="heroCopy">
@@ -121,6 +122,7 @@ export default function Home() {
             </div>
 
             <AdSlot label="In-Content Rectangle" />
+            <div className="exploreAdWrap"><a className="exploreAd" href="https://movementssubscriptionobjection.com/n6ca0j1g?key=e26f23836be2dec0064859be24df5df4" target="_blank" rel="sponsored nofollow noopener noreferrer"><span>Sponsored</span><strong>Explore More ↗</strong></a></div>
 
             <div className="moreGrid">
               {filtered.slice(3).map((p) => (
@@ -140,6 +142,7 @@ export default function Home() {
 
           <aside className="sideColumn">
             <AdSlot label="Sidebar" />
+            <div className="exploreAdWrap sideExplore"><a className="exploreAd" href="https://movementssubscriptionobjection.com/n6ca0j1g?key=e26f23836be2dec0064859be24df5df4" target="_blank" rel="sponsored nofollow noopener noreferrer"><span>Sponsored</span><strong>Explore More ↗</strong></a></div>
 
             <div className="sidePanel">
               <span className="eyebrow">POPULAR</span>
