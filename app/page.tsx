@@ -162,7 +162,7 @@ export default function Home() {
           </aside>
         </section>
 
-        <section className="toolsSection"><div className="sectionHeader"><div><span className="eyebrow">READ MORE</span><h2>Explore the full article library</h2></div><a className="primaryButton" href="/articles">View all articles →</a></div><section id="tools" className="toolsSection">
+        <div className="sectionHeader"><div><span className="eyebrow">READ MORE</span><h2>Explore the full article library</h2></div><a className="primaryButton" href="/articles">View all articles →</a></div><section id="tools" className="toolsSection">
           <div className="sectionHeader">
             <div><span className="eyebrow">FREE TOOLS</span><h2>Useful utilities, no signup needed</h2></div>
             <span className="sectionNote">Designed for repeat search traffic</span>
