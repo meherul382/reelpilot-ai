@@ -151,6 +151,26 @@ export default function Home() {
               ))}
             </div>
 
+            <div className="sidePanel">
+              <span className="eyebrow">TRENDING NOW</span>
+              <h3>Topics getting attention</h3>
+              { [posts[0], posts[1], posts[4]].map((p, i) => (
+                <a className="topicRow" key={p.id} href={"/story/" + slugify(p.title)}>
+                  <span>↗</span><b>{p.title}</b><span>→</span>
+                </a>
+              ))}
+            </div>
+
+            <div className="sidePanel">
+              <span className="eyebrow">POPULAR ARTICLES</span>
+              <h3>Worth another read</h3>
+              { [posts[5], posts[3], posts[2]].map((p, i) => (
+                <a className="topicRow" key={p.id} href={"/story/" + slugify(p.title)}>
+                  <span>{String(i + 1).padStart(2, "0")}</span><b>{p.title}</b><span>→</span>
+                </a>
+              ))}
+            </div>
+
             <div className="sidePanel newsletter">
               <span className="eyebrow">NEWSLETTER</span>
               <h3>Get useful stories in your inbox.</h3>
