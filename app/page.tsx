@@ -60,7 +60,7 @@ export default function Home() {
           <a className="logo" href="#">AdPage<span>Builder</span></a>
           <nav className="desktopNav">
             {["Home", "Trending", "Technology", "Lifestyle", "Travel", "Entertainment", "Tools"].map((x) => (
-              <a key={x} href={x === "Home" ? "#" : "#" + x.toLowerCase()}>{x}</a>
+              <a key={x} href={x === "Home" ? "/" : x === "Tools" ? "#tools" : "/" + x.toLowerCase()}>{x}</a>
             ))}
           </nav>
           <a className="headerButton" href="#tools">Explore Free Tools</a>
@@ -162,7 +162,7 @@ export default function Home() {
           </aside>
         </section>
 
-        <section id="tools" className="toolsSection">
+        <section className="toolsSection"><div className="sectionHeader"><div><span className="eyebrow">READ MORE</span><h2>Explore the full article library</h2></div><a className="primaryButton" href="/articles">View all articles →</a></div><section id="tools" className="toolsSection">
           <div className="sectionHeader">
             <div><span className="eyebrow">FREE TOOLS</span><h2>Useful utilities, no signup needed</h2></div>
             <span className="sectionNote">Designed for repeat search traffic</span>
@@ -182,8 +182,8 @@ export default function Home() {
       <footer className="footer">
         <div className="container footerGrid">
           <div><a className="logo" href="#">AdPage<span>Builder</span></a><p>Mixed content, useful tools and fresh stories.</p></div>
-          <div><h4>Explore</h4><a href="#latest">Latest</a><a href="#tools">Free Tools</a></div>
-          <div><h4>Info</h4><a href="#privacy">Privacy</a><a href="#terms">Terms</a></div>
+          <div><h4>Explore</h4><a href="/articles">All Articles</a><a href="/technology">Technology</a><a href="/travel">Travel</a><a href="/lifestyle">Lifestyle</a><a href="#tools">Free Tools</a></div>
+          <div><h4>Info</h4><a href="/about">About</a><a href="/contact">Contact</a><a href="/faq">FAQ</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
         </div>
         <div className="container copyright">© 2026 AdPage Builder. All rights reserved.</div>
       </footer>
