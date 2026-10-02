@@ -22,6 +22,8 @@ const posts: Post[] = [
 
 const tools = ["Image Compressor", "Image Resizer", "QR Code Generator", "Word Counter", "Case Converter", "Password Generator"];
 
+function slugify(value: string) { return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""); }
+
 function AdSlot({ label }: { label: string }) {
   return <div className="adSlot"><span>Advertisement</span><strong>{label}</strong><small>Replace with your approved Adsterra unit</small></div>;
 }
@@ -112,7 +114,7 @@ export default function Home() {
                     <span className="postCategory">{p.category}</span>
                     <h3>{p.title}</h3>
                     <p>{p.excerpt}</p>
-                    <div className="postFoot"><span>{p.read}</span><a href={"#post-" + p.id}>Read story →</a></div>
+                    <div className="postFoot"><span>{p.read}</span><a href={"/story/" + slugify(p.title)}>Read story →</a></div>
                   </div>
                 </article>
               ))}
@@ -128,7 +130,7 @@ export default function Home() {
                     <span className="postCategory">{p.category}</span>
                     <h3>{p.title}</h3>
                     <p>{p.excerpt}</p>
-                    <div className="postFoot"><span>{p.read}</span><a href="#">Open →</a></div>
+                    <div className="postFoot"><span>{p.read}</span><a href={"/story/" + slugify(p.title)}>Open →</a></div>
                   </div>
                 </article>
               ))}
@@ -169,7 +171,7 @@ export default function Home() {
           </div>
           <div className="toolGrid">
             {tools.map((t) => (
-              <a className="toolCard" href="#tools" key={t}>
+              <a className="toolCard" href={"/tools/" + slugify(t)} key={t}>
                 <span className="toolIcon">✦</span><strong>{t}</strong><p>Fast, simple and mobile-friendly.</p><span className="toolLink">Use tool →</span>
               </a>
             ))}
